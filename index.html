@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GYM DAY - Fitness & Nutrition</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#ff1020;--blue:#087cff;--black:#03070d;--white:#fff;--gray:#aab5c5}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--black);color:#fff;min-height:100vh}
+header{height:80px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#05090f;border-bottom:1px solid #172231;position:sticky;top:0;z-index:10}
+.logo{font-size:28px}.logo b{color:var(--red)}
+nav{display:flex;gap:12px}nav button,.join{border:0;background:none;color:#fff;font-weight:bold;cursor:pointer;padding:10px}
+nav button:hover{color:var(--red)}
+.join{background:linear-gradient(90deg,var(--red),var(--blue));border-radius:25px}
+.page{display:none}.page.active{display:block}
+.form-page{display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 80px);padding:30px 15px;background:radial-gradient(circle at 10% 30%,rgba(255,0,0,.25),transparent 30%),radial-gradient(circle at 90% 70%,rgba(0,100,255,.25),transparent 30%),#02050a}
+.form-card{width:750px;max-width:100%;padding:30px;border:2px solid var(--blue);border-left-color:var(--red);border-radius:25px;background:#050b14;box-shadow:0 0 40px rgba(0,100,255,.25),0 0 30px rgba(255,0,0,.15)}
+.header-box{display:flex;align-items:center;justify-content:center;gap:18px;padding:20px;margin-bottom:20px;border:2px solid var(--blue);border-left-color:var(--red);border-radius:20px}.header-box h1{font-size:40px;font-style:italic}.header-box h1 span{color:var(--red)}.header-box p{text-align:center;color:#9aaac0;font-size:11px;letter-spacing:2px}
+label{display:block;margin:15px 0 7px;font-size:17px;font-weight:bold}
+input,select{width:100%;padding:15px;border-radius:14px;border:2px solid var(--blue);background:#061222;color:#fff;font-size:16px}
+.main-btn{display:block;width:50%;margin:28px auto 0;padding:15px;border:0;border-radius:30px;background:linear-gradient(90deg,var(--red),var(--blue));color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
+.hero{text-align:center;padding:70px 20px 40px}.hero h1{font-size:clamp(45px,9vw,90px);line-height:.95;margin:15px}.hero h1 span{color:var(--red)}.hero h1 b{color:var(--blue)}.hero p{color:var(--gray);letter-spacing:2px}
+.goals{max-width:1050px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:30px}.goal{min-height:500px;padding:30px;text-align:center;border-radius:25px;background:#07101b;position:relative;transition:.3s}.goal:hover{transform:translateY(-8px)}.slim{border:2px solid var(--red);box-shadow:0 0 30px #ff102033}.fat{border:2px solid var(--blue);box-shadow:0 0 30px #087cff33}.goal .icon{font-size:45px}.goal h2{font-size:48px;margin:10px}.goal p{color:var(--gray)}.person{height:260px;display:flex;justify-content:center;align-items:center;font-size:145px}.goal button{position:absolute;bottom:25px;left:15%;width:70%;padding:14px;border:0;border-radius:30px;background:var(--red);color:#fff;font-weight:bold;cursor:pointer}.fat button{background:var(--blue)}
+.features{max-width:1000px;margin:auto;padding:40px 20px;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;gap:20px}.features div{font-size:28px}.features strong{display:block;margin-top:8px;font-size:14px}
+.food-page{max-width:1100px;margin:auto;padding:45px 20px 70px}.food-title{text-align:center;margin-bottom:35px}.food-title h1{font-size:clamp(35px,6vw,65px);margin:15px 0}.food-title p{color:var(--gray);line-height:1.6}.gain .food-title h1 span{color:var(--red)}.loss .food-title h1 span{color:var(--blue)}
+.food-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.food-card{padding:25px;min-height:180px;border-radius:18px;background:#07101b;border:2px solid #20334a}.gain .food-card{border-left:5px solid var(--red)}.loss .food-card{border-left:5px solid var(--blue)}.food-card h2{margin-bottom:10px}.food-card h3{font-size:14px;margin-bottom:10px}.gain .food-card h3{color:var(--red)}.loss .food-card h3{color:var(--blue)}.food-card p{color:#c4cedb;line-height:1.7}.back{display:inline-block;margin-top:30px;padding:12px 20px;border:0;border-radius:25px;background:linear-gradient(90deg,var(--red),var(--blue));color:#fff;font-weight:bold;cursor:pointer}
+@media(max-width:750px){nav button{display:none}.goals,.food-grid,.features{grid-template-columns:1fr}.form-card{padding:20px}.header-box h1{font-size:30px}.main-btn{width:70%}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">🏋️ <b>GYM</b></div>
+<nav>
+<button onclick="showPage('home')">HOME</button>
+<button onclick="showPage('profile')">PROFILE</button>
+<button onclick="showPage('transform')">TRAINING</button>
+</nav>
+<button class="join" onclick="showPage('profile')">JOIN NOW</button>
+</header>
+
+<!-- PROFILE / FIRST PAGE -->
+<section id="profile" class="page active form-page">
+<div class="form-card">
+<div class="header-box">
+<div style="font-size:40px">🏋️</div>
+<div><h1>GYM <span>DAY</span></h1><p>PROTEIN • FITNESS • HEALTH</p></div>
+<div style="font-size:35px">💪</div>
+</div>
+<form id="gymForm">
+<label>👤 Name</label><input id="name" type="text" placeholder="Enter your name" required>
+<label>📅 Age</label><input id="age" type="number" placeholder="Enter your age" required>
+<label>⚥ Sex</label><select id="sex" required><option value="">Select your sex</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select>
+<label>⚖️ Weight</label><input id="weight" type="number" placeholder="Enter your weight (kg)" required>
+<label>📏 Height</label><input id="height" type="number" placeholder="Enter your height (cm)" required>
+<label>📞 Phone</label><input id="phone" type="tel" placeholder="Enter your phone number" required>
+<button class="main-btn" type="submit">➤ SUBMIT</button>
+</form>
+</div>
+</section>
+
+<!-- HOME -->
+<section id="home" class="page">
+<div class="hero"><p>BETTER HEALTH • STRONGER YOU</p><h1>TRANSFORM<br><span>YOUR</span> <b>BODY</b></h1><p>Choose your goal and explore your daily food plan.</p></div>
+<div class="goals">
+<div class="goal slim"><div class="icon">🏋️</div><h2>SLIM</h2><p>Healthy nutrition • Strength • Energy</p><div class="person">🧍</div><button onclick="showPage('gain')">VIEW PLAN →</button></div>
+<div class="goal fat"><div class="icon">🏋️</div><h2>FAT</h2><p>Balanced meals • Activity • Healthy habits</p><div class="person">🧍</div><button onclick="showPage('loss')">VIEW PLAN →</button></div>
+</div>
+<div class="features"><div>❤️<strong>STAY HEALTHY</strong></div><div>💪<strong>BUILD STRENGTH</strong></div><div>🏃<strong>ACHIEVE GOALS</strong></div></div>
+</section>
+
+<!-- TRANSFORM -->
+<section id="transform" class="page">
+<div class="hero"><p>GYM DAY • PROTEIN • FITNESS</p><h1>TRANSFORM<br><span>YOUR</span> <b>BODY</b></h1><p>Select your goal below.</p></div>
+<div class="goals">
+<div class="goal slim"><div class="icon">🏋️</div><h2>SLIM</h2><p>Healthy nutrition • Strength • Energy</p><div class="person">🧍</div><button onclick="showPage('gain')">VIEW PLAN →</button></div>
+<div class="goal fat"><div class="icon">🏋️</div><h2>FAT</h2><p>Balanced meals • Activity • Healthy habits</p><div class="person">🧍</div><button onclick="showPage('loss')">VIEW PLAN →</button></div>
+</div>
+</section>
+
+<!-- WEIGHT GAIN -->
+<section id="gain" class="page food-page gain">
+<div class="food-title"><p>GYM DAY • PROTEIN</p><h1>HEALTHY <span>WEIGHT GAIN</span></h1><p>Balanced nutritious foods for energy, strength and healthy growth.</p></div>
+<div class="food-grid">
+<div class="food-card"><h2>🌅 Morning</h2><h3>7:00 AM</h3><p>🍌 Banana + milk</p><p>Breakfast: 2–3 idlis/dosas + sambar + eggs</p><p>Alternative: oats + milk + banana + nuts</p></div>
+<div class="food-card"><h2>🍎 Mid-Morning</h2><h3>11:00 AM</h3><p>Groundnut/peanut sundal + fruit</p><p>Or a handful of nuts + fruit</p></div>
+<div class="food-card"><h2>🍛 Lunch</h2><h3>1:00–2:00 PM</h3><p>Rice + sambar/dal + vegetables</p><p>Eggs / chicken / fish / paneer + curd</p></div>
+<div class="food-card"><h2>🥛 Evening</h2><h3>4:30–5:00 PM</h3><p>Banana milkshake with peanuts</p><p>Or milk + nuts + fruit</p></div>
+<div class="food-card"><h2>🌙 Dinner</h2><h3>8:00 PM</h3><p>Rice/chapati + dal + vegetables</p><p>Egg/chicken/fish/paneer + curd</p></div>
+<div class="food-card"><h2>🥛 Before Bed</h2><h3>9:30–10:00 PM</h3><p>A glass of milk, if it suits you.</p></div>
+</div><button class="back" onclick="showPage('home')">← BACK</button>
+</section>
+
+<!-- WEIGHT MANAGEMENT -->
+<section id="loss" class="page food-page loss">
+<div class="food-title"><p>GYM DAY • HEALTHY HABITS</p><h1>HEALTHY <span>WEIGHT MANAGEMENT</span></h1><p>Balanced meals and healthy habits instead of strict dieting.</p></div>
+<div class="food-grid">
+<div class="food-card"><h2>🌅 Morning</h2><h3>On waking</h3><p>Water</p><p>Breakfast: 2 idlis + sambar + egg</p><p>Or vegetable dosa + sambar</p></div>
+<div class="food-card"><h2>🍎 Mid-Morning</h2><h3>Snack</h3><p>One whole fruit such as apple, orange, guava or banana.</p></div>
+<div class="food-card"><h2>🍛 Lunch</h2><h3>1:00–2:00 PM</h3><p>Rice + vegetables + dal/sambar</p><p>Egg, fish, chicken or paneer + curd</p></div>
+<div class="food-card"><h2>🥜 Evening</h2><h3>Snack</h3><p>Sundal / roasted peanuts or fruit</p><p>Water or unsweetened milk</p></div>
+<div class="food-card"><h2>🌙 Dinner</h2><h3>Evening</h3><p>2 chapatis + vegetable curry + dal/egg</p><p>Or rice + vegetables + protein food</p></div>
+<div class="food-card"><h2>🥛 If Hungry Later</h2><h3>Optional</h3><p>Milk or a small fruit.</p></div>
+</div><button class="back" onclick="showPage('home')">← BACK</button>
+</section>
+
+<script>
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ window.scrollTo(0,0);
+}
+document.getElementById("gymForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ localStorage.setItem("gymUser",JSON.stringify({
+  name:document.getElementById("name").value,
+  age:document.getElementById("age").value,
+  sex:document.getElementById("sex").value,
+  weight:document.getElementById("weight").value,
+  height:document.getElementById("height").value,
+  phone:document.getElementById("phone").value
+ }));
+ showPage("home");
+});
+</script>
+</body>
+</html>
